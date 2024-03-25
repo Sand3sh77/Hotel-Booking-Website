@@ -1,0 +1,48 @@
+.room-container {
+    width: 60%;
+    overflow: hidden;
+    margin: 2rem auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1rem;
+    // border: 1px solid black;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 0.4rem;
+
+    .image {
+        width: 50%;
+
+        img {
+            object-fit: cover;
+            height: 15rem;
+            border-radius: 0.5rem;
+        }
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .name {
+            font-size: 1.7rem;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: 2rem;
+
+        button {
+            margin: 1rem;
+            background-color: black;
+            color: white;
+            padding: 0.3rem 0.5rem;
+            border-radius: 0.2rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+    }
+
+}

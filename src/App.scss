@@ -1,0 +1,29 @@
+* {
+  font-family: "PlusJakartaRegular", Helvetica, sans-serif;
+}
+
+body {
+  background-color: rgb(248, 245, 245);
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin mobile {
+  @media (max-width:700px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width:1050px) {
+    @content;
+  }
+}
+
+@mixin small-tablet {
+  @media (max-width:900px) {
+    @content;
+  }
+}

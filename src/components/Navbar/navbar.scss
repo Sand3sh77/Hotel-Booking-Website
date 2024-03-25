@@ -1,0 +1,66 @@
+.nav-container {
+    display: flex;
+    height: 4rem;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    padding: 0 2rem;
+    // position: sticky;
+    // top: 0;
+
+    .left {
+        font-size: 1.3rem;
+    }
+
+    .right {
+        .links {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-right: 1rem;
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+        }
+
+        .dropdown {
+
+            button {
+                display: flex;
+                gap: 0.4rem;
+                margin: 1rem;
+                background-color: black;
+                color: white;
+                padding: 0.3rem 0.5rem;
+                border-radius: 0.2rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+            }
+
+            .items {
+                background-color: white;
+                color: black;
+                position: absolute;
+                top: 3.3rem;
+                right: 3.6rem;
+                width: 8rem;
+                border: 1px solid grey;
+                padding: 0.5rem 0.8rem;
+                border-radius: 0.3rem;
+
+                .item {
+                    cursor: pointer;
+                }
+
+                .item:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
