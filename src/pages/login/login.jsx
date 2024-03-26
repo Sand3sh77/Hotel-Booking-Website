@@ -5,6 +5,9 @@ import { AuthContext } from '../../context/authContext';
 import { HiddenEyeSvg, ShowEyeSvg } from '../../../public/assets/svg/svg.jsx';
 import callApi from '../../hooks/callApi.jsx';
 import Navbar from '../../components/Navbar/navbar.jsx';
+import { API } from '../../helpers/api.jsx';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -14,11 +17,27 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // const url = API + "auth/login";
         const url = "https://quizhunt.suraj1.com.np/auth/login";
-        const resp = await callApi({ url, method: "post", data, alert: true });
-        if (resp.status === 200) {
-            setUserToken(resp.data.data.token);
-            navigate('/');
+        try {
+            const resp = await axios.post(url, data, {
+                headers: {
+                    "accept": '/',
+                }
+            });
+            if (resp.status === 200) {
+                toast.success("Log In Succesfull");
+                // setUserToken(resp.data.token);
+                setUserToken(resp.data.data.token);
+                navigate('/');
+                // localStorage.setItem("data", resp.data);
+            }
+        }
+        catch (error) {
+            // console.error("Error:", error);
+            if (error.response.data.message) {
+                toast.error(error.response.data.message);
+            }
         }
     }
 

@@ -4,9 +4,8 @@ import { DatePickerInput } from '@mantine/dates';
 import { Select, TextInput } from '@mantine/core';
 import { CalendarIcon } from '../../../public/assets/svg/svg';
 
-export const SearchBar = () => {
+export const SearchBar = ({ props }) => {
     const [date, setDate] = useState([null, null]);
-
 
     return (
         <div className="search-container">

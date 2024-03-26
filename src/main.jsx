@@ -7,13 +7,16 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/carousel/styles.css';
+import { RoomContextProvider } from './context/roomContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <AuthContextProvider>
-    <MantineProvider>
-      <App />
-    </MantineProvider>
-  </AuthContextProvider >
+  <RoomContextProvider>
+    <AuthContextProvider>
+      <MantineProvider>
+        <App />
+      </MantineProvider>
+    </AuthContextProvider >
+  </RoomContextProvider>
   // </React.StrictMode>,
 )

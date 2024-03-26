@@ -6,6 +6,8 @@ import { HiddenEyeSvg, ShowEyeSvg } from '../../../public/assets/svg/svg';
 import { AuthContext } from '../../context/authContext';
 import callApi from '../../hooks/callApi';
 import Navbar from '../../components/Navbar/navbar';
+import { API } from '../../helpers/api';
+import axios from 'axios';
 
 const Signup = () => {
     const [data, setData] = useState({ name: '', email: '', password: '', cpassword: '' });
@@ -26,13 +28,26 @@ const Signup = () => {
         if (data.cpassword !== data.password) {
             toast.error("Passwords do not match");
         }
-        // else {
-        //     const url = "https://quizhunt.suraj1.com.np/auth/register";
-        //     const resp = await callApi({ url, method: "post", data, alert: true });
-        //     if (resp.status === 200) {
-        //         navigate(`/verify/${data.email}`);
-        //     }
-        // }
+        else {
+            const url = API + "auth/register";
+            try {
+                const resp = await axios.post(url, data, {
+                    headers: {
+                        "accept": '/',
+                    }
+                });
+                if (resp.status === 200) {
+                    toast.success(resp.data.message);
+                    navigate("/login");
+                }
+            }
+            catch (error) {
+                // console.error("Error:", error);
+                if (error.response.data.message) {
+                    toast.error(error.response.data.message);
+                }
+            }
+        }
     }
 
     return (

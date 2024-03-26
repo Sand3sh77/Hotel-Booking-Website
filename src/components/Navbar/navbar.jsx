@@ -24,7 +24,9 @@ const Navbar = () => {
     return (
         <div className='nav-container'>
             <div className='left'>
-                MERN HOTEL BOOKING
+                <Link to="/">
+                    MERN HOTEL BOOKING
+                </Link>
             </div>
             <div className='right'>
                 {currentUser ?
@@ -35,7 +37,9 @@ const Navbar = () => {
                         </button>
                         {dropdown &&
                             <div className='items'>
-                                <div className='item'>Profile</div>
+                                <Link to={`/profile/${currentUser.user_id}`}>
+                                    <div className='item' onClick={() => setDropdown(!dropdown)}>Profile</div>
+                                </Link>
                                 <div className='item' onClick={() => handleLogout()}>Logout</div>
                             </div>
                         }
@@ -51,7 +55,7 @@ const Navbar = () => {
                     </div>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

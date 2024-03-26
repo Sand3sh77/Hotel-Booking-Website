@@ -1,44 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SearchBar } from '../../components/searchBar/searchBar'
 import Rooms from '../../components/Rooms/rooms'
+import { API } from '../../helpers/api';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Home = () => {
+    const [rooms, setRooms] = useState([]);
 
-    const rooms = [
-        {
-            imgLink: "https://thespruce.com/thmb/2_Q52GK3rayV1wnqm6vyBvgI3Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/put-together-a-perfect-guest-room-1976987-hero-223e3e8f697e4b13b62ad4fe898d492d.jpg",
-            name: "OYO room for couples",
-            location: "new delhi",
-            type: "delux",
-            price: 500
-        },
-        {
-            imgLink: "https://thespruce.com/thmb/2_Q52GK3rayV1wnqm6vyBvgI3Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/put-together-a-perfect-guest-room-1976987-hero-223e3e8f697e4b13b62ad4fe898d492d.jpg",
-            name: "OYO room for couples",
-            location: "new delhi",
-            type: "delux",
-            price: 500
-        },
-        {
-            imgLink: "https://thespruce.com/thmb/2_Q52GK3rayV1wnqm6vyBvgI3Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/put-together-a-perfect-guest-room-1976987-hero-223e3e8f697e4b13b62ad4fe898d492d.jpg",
-            name: "OYO room for couples",
-            location: "new delhi",
-            type: "delux",
-            price: 500
-        },
-        {
-            imgLink: "https://thespruce.com/thmb/2_Q52GK3rayV1wnqm6vyBvgI3Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/put-together-a-perfect-guest-room-1976987-hero-223e3e8f697e4b13b62ad4fe898d492d.jpg",
-            name: "OYO room for couples",
-            location: "new delhi",
-            type: "delux",
-            price: 500
-        },
-    ]
+    useEffect(() => {
+        const fetchRooms = async () => {
+            const url = API + "room";
+            try {
+                const resp = await axios.get(url);
+                if (resp.status === 200) {
+                    // toast.success(resp.data.message);
+                    setRooms(resp.data.data);
+                }
+            } catch (error) {
+                if (error.response && error.response.data.message) {
+                    toast.error(error.response.data.message);
+                } else {
+                    toast.error("Failed to fetch rooms");
+                }
+            }
+        };
+
+        fetchRooms();
+    }, []);
+
     return (
         <div className='home-container'>
             <SearchBar />
             <div className='rooms'>
-                {rooms.map((room, index) => <Rooms key={index} props={room} />)}
+                {rooms &&
+                    <>
+                        {rooms.map((room, index) => <Rooms key={index} props={room} />)}
+                    </>
+                }
             </div>
         </div>
     )

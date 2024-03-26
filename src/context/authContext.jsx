@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
                     }
                 });
                 if (resp.status === 200) {
-                    setCurrentUser(resp.data.data);
+                    setCurrentUser({ ...resp.data.data, role: "admin" });
                     localStorage.setItem("token", JSON.stringify(userToken));
                 }
             }

@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Home from './pages/home/home';
 import Navbar from './components/Navbar/navbar';
 import Room from './pages/room/room';
+import BookNow from './pages/bookNow/bookNow';
 import Profile from './pages/profile/profile';
 
 const queryClient = new QueryClient();
@@ -20,7 +21,9 @@ function App() {
     return (
       <div>
         <Navbar />
+        {/* <div style={{ marginTop: "4rem" }}> */}
         <Outlet />
+        {/* </div> */}
       </div >
     );
   }
@@ -53,6 +56,10 @@ function App() {
         {
           path: '/room/:id',
           element: <Room />
+        },
+        {
+          path: '/bookNow/:id',
+          element: <BookNow />
         },
       ]
     },
